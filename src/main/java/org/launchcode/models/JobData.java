@@ -83,6 +83,11 @@ public class JobData {
 
             if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
+                System.out.println(row);
+            }
+            else {
+                System.out.println("This job doesn't fit");
+
             }
         }
 
