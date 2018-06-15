@@ -6,7 +6,7 @@
 
 <div th:replace="fragments :: page-header"></div>
 
-<div class="container body-content">
+<div class="container body-content" th:fragment="searchForm">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
@@ -39,9 +39,21 @@
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
     <!--<h2> Results: </h2>-->
+    <div th:if="${jobs} and ${jobs.size()}">
+        <h3><span th:text="${jobs.size()}"> </span> <span> Result(s)</span></h3>
+        <p>
+            <table  class="job-listing" th:each="jobHashmap : ${jobs}">
+                <tbody>
+                <tr th:each="jobKVP : ${jobHashmap}">
 
-    <div th:replace="list-jobs :: jobs-list"></div>
+                        <td  th:text="${jobKVP.key}"/> <td th:text="${jobKVP.value}"/>
 
+                </tr>
+                </tbody>
+            </table>
+
+        </p>
+    </div>
 
 
 </div>

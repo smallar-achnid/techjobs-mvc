@@ -6,13 +6,31 @@
 
 <div th:replace="fragments :: page-header"></div>
 
+<div th:replace="fragments :: searchForm"></div>
+
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <!-- TODO #3 - Use the same list display from search.html -->
 
-    <div th:replace="list-jobs :: jobs-list"></div>
+    <!--<div th:replace="list-jobs :: jobs-list"></div> -->
+
+    <div th:if="${jobs} and ${jobs.size()}">
+        <h3><span th:text="${jobs.size()}"> </span> <span> Result(s)</span></h3>
+        <p>
+        <table  class="job-listing" th:each="jobHashmap : ${jobs}">
+            <tbody>
+            <tr th:each="jobKVP : ${jobHashmap}">
+
+                <td  th:text="${jobKVP.key}"/> <td th:text="${jobKVP.value}"/>
+
+            </tr>
+            </tbody>
+        </table>
+
+        </p>
+    </div>
 
 
 </div>

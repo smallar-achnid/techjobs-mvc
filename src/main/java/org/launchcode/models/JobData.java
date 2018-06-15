@@ -100,6 +100,24 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
+
+    public static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) {
+            System.out.println("No jobs match the criteria");
+        } else {
+            for (HashMap job : someJobs) {
+                for (Object item : job.keySet()) {
+                    Object jobKey = item;
+
+                    System.out.println("*****");
+                    System.out.println(jobKey.toString() + ": " + job.get(jobKey));
+                }
+                System.out.println("");
+                System.out.println("*****");
+            }
+        }
+    }
+
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         // load data, if not already loaded

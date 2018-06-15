@@ -31,14 +31,18 @@ public class SearchController {
                          @RequestParam String searchTerm) {
         //searchType = "All";
         ArrayList<HashMap<String, String>> jobs;
-
+        //String jobs
         if (searchType.equals("All")) {
+            //jobs = ("You selected all");
             jobs = JobData.findByValue(searchTerm);
         } else {
+            //jobs = ("You really did")
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
         }
         model.addAttribute("jobs", jobs);
-    return "list-jobs";
+        model.addAttribute("columns", ListController.columnChoices);
+        JobData.printJobs(jobs);
+    return "search";
     }
 
 
